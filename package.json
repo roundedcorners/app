@@ -13,8 +13,8 @@
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
 		"name": "🖋️ Source — 👐🏻 Open —",
-		"email": "Source/Open@PlayForm.Cloud",
-		"url": "HTTPS://PlayForm.Cloud"
+		"email": "Source/Open@PlayForm.LTD",
+		"url": "HTTPS://PlayForm.LTD"
 	},
 	"type": "module",
 	"scripts": {
@@ -31,7 +31,7 @@
 	"devDependencies": {
 		"@playform/build": "0.1.8",
 		"@tauri-apps/cli": "2.0.4",
-		"@types/node": "22.8.6",
+		"@types/node": "22.9.0",
 		"autoprefixer": "10.4.20",
 		"cssnano": "7.0.6",
 		"cssnano-preset-advanced": "7.0.6",
