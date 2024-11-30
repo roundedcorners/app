@@ -40,7 +40,9 @@ fn main() {
 	let mut defaults:HashMap<KeySettings, ValueSettings> = HashMap::new();
 
 	defaults.insert(KeySettings::Name("size"), ValueSettings::Size(23));
+
 	defaults.insert(KeySettings::Name("mode"), ValueSettings::Mode("dark"));
+
 	defaults.insert(KeySettings::Name("hidden"), ValueSettings::Hidden(false));
 
 	tauri::Builder::default()
@@ -68,6 +70,7 @@ fn main() {
 			}
 
 			store.save().expect("Error! Could not save settings.");
+
 			store.load().expect("Error! Could not get settings.");
 
 			let mut init_script = String::from(r#"window.settings = {};"#);
@@ -109,6 +112,7 @@ fn main() {
 					.replace_all(monitor.name().expect("Error! Could not get monitor name."), "");
 
 				let monitor_size = monitor.size().to_logical::<i32>(scale_factor);
+
 				let monitor_position = monitor.position().to_logical::<i32>(scale_factor);
 
 				let window = WindowBuilder::new(
@@ -145,6 +149,7 @@ fn main() {
 			}
 
 			sample_window.hide().expect("Error! Could not hide sample window");
+
 			sample_window.close().expect("Error! Could not close sample window");
 
 			Ok(())
@@ -201,9 +206,11 @@ fn main() {
 				store
 					.insert("size".to_string(), json!(size))
 					.expect("Error! Could not preserve size.");
+
 				store
 					.insert("mode".to_string(), json!(mode))
 					.expect("Error! Could not preserve mode.");
+
 				store
 					.insert("hidden".to_string(), json!(hidden))
 					.expect("Error! Could not preserve display.");

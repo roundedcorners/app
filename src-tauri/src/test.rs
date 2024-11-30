@@ -53,7 +53,9 @@ pub fn Fn() {
 						let Label = Regex::new(r"[^a-zA-Z0-9\s]")
 								.unwrap()
 								.replace_all(Monitor.name().expect("Cannot name."), "");
+
 						let SizeMonitor = Monitor.size().to_logical::<i32>(Scale);
+
 						let PositionMonitor = Monitor.position().to_logical::<i32>(Scale);
 
 						/**
