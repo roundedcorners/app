@@ -29,7 +29,7 @@
 		"solid-js": "1.9.3"
 	},
 	"devDependencies": {
-		"@playform/build": "0.1.9",
+		"@playform/build": "0.2.0",
 		"@tauri-apps/cli": "2.1.0",
 		"@types/node": "22.10.1",
 		"autoprefixer": "10.4.20",
