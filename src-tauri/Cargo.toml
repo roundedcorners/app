@@ -7,7 +7,7 @@ tauri-build = { version = "2.0.3", features = [] }
 
 [dependencies]
 regex = { version = "1.11.1" }
-serde = { version = "1.0.215", features = ["derive"] }
+serde = { version = "1.0.216", features = ["derive"] }
 serde_json = { version = "1.0.133" }
 tauri = { version = "2.1.1", features = [
 	"tray-icon",
@@ -34,7 +34,7 @@ tauri = { version = "2.1.1", features = [
 	"window-unmaximize",
 ] }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
-unbug = { version = "0.3.0", features = ["enable"] }
+unbug = { version = "0.4.0", features = ["enable"] }
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
