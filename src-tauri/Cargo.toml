@@ -34,10 +34,9 @@ tauri = { version = "2.1.1", features = [
 	"window-unmaximize",
 ] }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
-unbug = { version = "0.4.0", features = ["enable"] }
+unbug = { version = "0.4.0" }
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
 
 default = []
-Debug = ["unbug/enable"]
