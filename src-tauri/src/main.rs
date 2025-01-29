@@ -47,8 +47,7 @@ fn main() {
 
 	tauri::Builder::default()
 		.setup(|app| {
-			let mut store =
-				StoreBuilder::new(app.app_handle(), PathBuf::from("settings.json")).build();
+			let mut store = StoreBuilder::new(app.app_handle(), PathBuf::from("settings.json")).build();
 
 			if let Err(_e) = store.load() {
 				store.save().expect("Error! Could not initialize settings.");
@@ -61,9 +60,7 @@ fn main() {
 					store
 						.insert(
 							key.as_ref().to_owned(),
-							json!(
-								json!(value).as_object().and_then(|object| object.values().next())
-							),
+							json!(json!(value).as_object().and_then(|object| object.values().next())),
 						)
 						.expect("Error! Could not set defaults.");
 				}
@@ -104,9 +101,7 @@ fn main() {
 				.expect("Error! Could not get primary monitor.")
 				.scale_factor();
 
-			for monitor in
-				sample_window.available_monitors().expect("Error! Failed to get monitors.")
-			{
+			for monitor in sample_window.available_monitors().expect("Error! Failed to get monitors.") {
 				let label_monitor = Regex::new(r"[^a-zA-Z0-9\s]")
 					.unwrap()
 					.replace_all(monitor.name().expect("Error! Could not get monitor name."), "");
@@ -115,29 +110,25 @@ fn main() {
 
 				let monitor_position = monitor.position().to_logical::<i32>(scale_factor);
 
-				let window = WindowBuilder::new(
-					app,
-					label_monitor,
-					tauri::WindowUrl::App("index.html".into()),
-				)
-				.accept_first_mouse(false)
-				.always_on_top(true)
-				.center()
-				.decorations(false)
-				.disable_file_drop_handler()
-				.focused(false)
-				.fullscreen(false)
-				.initialization_script(&init_script)
-				.inner_size(monitor_size.width.into(), monitor_size.height.into())
-				.maximized(false)
-				.position(monitor_position.x.into(), monitor_position.y.into())
-				.resizable(false)
-				.skip_taskbar(true)
-				.title("")
-				.transparent(true)
-				.visible(false)
-				.build()
-				.expect("Error! Failed to create a window.");
+				let window = WindowBuilder::new(app, label_monitor, tauri::WindowUrl::App("index.html".into()))
+					.accept_first_mouse(false)
+					.always_on_top(true)
+					.center()
+					.decorations(false)
+					.disable_file_drop_handler()
+					.focused(false)
+					.fullscreen(false)
+					.initialization_script(&init_script)
+					.inner_size(monitor_size.width.into(), monitor_size.height.into())
+					.maximized(false)
+					.position(monitor_position.x.into(), monitor_position.y.into())
+					.resizable(false)
+					.skip_taskbar(true)
+					.title("")
+					.transparent(true)
+					.visible(false)
+					.build()
+					.expect("Error! Failed to create a window.");
 
 				window.set_cursor_grab(false).expect("Error! Could not set cursor grab.");
 
@@ -157,21 +148,20 @@ fn main() {
 		.system_tray(
 			SystemTray::new().with_menu(
 				SystemTrayMenu::new()
-					.add_item(CustomMenuItem::new("increase", "➕ Increase Size"))
-					.add_item(CustomMenuItem::new("decrease", "➖ Decrease Size"))
-					.add_item(CustomMenuItem::new("reset", "↩️ Reset"))
+					.add_item(CustomMenuItem::new("increase", "Increase Size ➕"))
+					.add_item(CustomMenuItem::new("decrease", "Decrease Size ➖"))
+					.add_item(CustomMenuItem::new("reset", "Reset ↩️"))
 					.add_native_item(SystemTrayMenuItem::Separator)
-					.add_item(CustomMenuItem::new("dark", "🌑 Dark"))
-					.add_item(CustomMenuItem::new("light", "☀️ Light"))
+					.add_item(CustomMenuItem::new("dark", "Dark 🌑"))
+					.add_item(CustomMenuItem::new("light", "Light ☀️"))
 					.add_native_item(SystemTrayMenuItem::Separator)
-					.add_item(CustomMenuItem::new("show", "👨🏻 Show"))
-					.add_item(CustomMenuItem::new("hide", "🥷🏽 Hide"))
-					.add_item(CustomMenuItem::new("exit", "❌ Exit")),
+					.add_item(CustomMenuItem::new("show", "Show 👨🏻"))
+					.add_item(CustomMenuItem::new("hide", "Hide 🥷🏽"))
+					.add_item(CustomMenuItem::new("exit", "Exit ❌")),
 			),
 		)
 		.on_system_tray_event(|app, event| {
-			let mut store =
-				StoreBuilder::new(app.app_handle(), PathBuf::from("settings.json")).build();
+			let mut store = StoreBuilder::new(app.app_handle(), PathBuf::from("settings.json")).build();
 
 			store.load().expect("Error! Could not get settings.");
 
@@ -224,8 +214,7 @@ fn main() {
 								"size",
 								Payload {
 									message:Message::Size(
-										size.as_i64()
-											.expect("Error! Could not get size from settings."),
+										size.as_i64().expect("Error! Could not get size from settings."),
 									),
 								},
 							)
@@ -238,9 +227,7 @@ fn main() {
 								"mode",
 								Payload {
 									message:Message::Mode(
-										mode.as_str()
-											.expect("Error! Could not get mode from settings.")
-											.to_owned(),
+										mode.as_str().expect("Error! Could not get mode from settings.").to_owned(),
 									),
 								},
 							)
@@ -265,13 +252,5 @@ use std::{collections::HashMap, path::PathBuf};
 
 use regex::Regex;
 use serde_json::json;
-use tauri::{
-	CustomMenuItem,
-	Manager,
-	SystemTray,
-	SystemTrayEvent,
-	SystemTrayMenu,
-	SystemTrayMenuItem,
-	WindowBuilder,
-};
+use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem, WindowBuilder};
 use tauri_plugin_store::StoreBuilder;
