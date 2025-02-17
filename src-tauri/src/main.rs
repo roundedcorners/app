@@ -148,16 +148,16 @@ fn main() {
 		.system_tray(
 			SystemTray::new().with_menu(
 				SystemTrayMenu::new()
-					.add_item(CustomMenuItem::new("increase", "Increase Size ➕"))
-					.add_item(CustomMenuItem::new("decrease", "Decrease Size ➖"))
-					.add_item(CustomMenuItem::new("reset", "Reset ↩️"))
+					.add_item(MenuItem::new("increase", "Increase Size ➕", true, None))
+					.add_item(MenuItem::new("decrease", "Decrease Size ➖", true, None))
+					.add_item(MenuItem::new("reset", "Reset ↩️", true, None))
 					.add_native_item(SystemTrayMenuItem::Separator)
-					.add_item(CustomMenuItem::new("dark", "Dark 🌑"))
-					.add_item(CustomMenuItem::new("light", "Light ☀️"))
+					.add_item(MenuItem::new("dark", "Dark 🌑", true, None))
+					.add_item(MenuItem::new("light", "Light ☀️", true, None))
 					.add_native_item(SystemTrayMenuItem::Separator)
-					.add_item(CustomMenuItem::new("show", "Show 👨🏻"))
-					.add_item(CustomMenuItem::new("hide", "Hide 🥷🏽"))
-					.add_item(CustomMenuItem::new("exit", "Exit ❌")),
+					.add_item(MenuItem::new("show", "Show 👨🏻", true, None))
+					.add_item(MenuItem::new("hide", "Hide 🥷🏽", true, None))
+					.add_item(MenuItem::new("exit", "Exit ❌", true, None)),
 			),
 		)
 		.on_system_tray_event(|app, event| {
@@ -252,5 +252,5 @@ use std::{collections::HashMap, path::PathBuf};
 
 use regex::Regex;
 use serde_json::json;
-use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem, WindowBuilder};
+use tauri::{Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem, WindowBuilder, menu::MenuItem};
 use tauri_plugin_store::StoreBuilder;

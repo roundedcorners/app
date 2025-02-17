@@ -5,31 +5,8 @@ tauri-build = { version = "2.0.5", features = [] }
 regex = { version = "1.11.1" }
 serde = { version = "1.0.217", features = ["derive"] }
 serde_json = { version = "1.0.138" }
-tauri = { version = "2.2.5", features = [
-	"tray-icon",
-	"system-tray",
-	"window-center",
-	"window-close",
-	"window-create",
-	"window-hide",
-	"window-maximize",
-	"window-minimize",
-	"window-set-always-on-top",
-	"window-set-cursor-grab",
-	"window-set-cursor-visible",
-	"window-set-decorations",
-	"window-set-focus",
-	"window-set-fullscreen",
-	"window-set-ignore-cursor-events",
-	"window-set-position",
-	"window-set-resizable",
-	"window-set-size",
-	"window-set-skip-taskbar",
-	"window-set-title",
-	"window-show",
-	"window-unmaximize",
-] }
-tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+tauri = { version = "2.2.5", features = ["tray-icon"] }
+tauri-plugin-store = { version = "2.2.0" }
 unbug = { version = "0.4.0" }
 
 [features]
